@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_12_232827) do
+ActiveRecord::Schema.define(version: 2022_03_13_014534) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -18,4 +18,19 @@ ActiveRecord::Schema.define(version: 2022_03_12_232827) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "consoles", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "video_games", force: :cascade do |t|
+    t.string "name"
+    t.integer "console_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["console_id"], name: "index_video_games_on_console_id"
+  end
+
+  add_foreign_key "video_games", "consoles"
 end
